@@ -21,10 +21,6 @@ let main argv =
     
     let n = System.Int32.Parse(f.ReadLine())
     
-    (*
-    let alphabet = "T A G C".Split([|" "|], System.StringSplitOptions.RemoveEmptyEntries)
-    let n = 2
-    *)
     let indicesToString (indices: seq<int>) = 
         System.String.Join("", Seq.map (fun x -> Seq.nth x alphabet) indices |> Seq.toArray)
 

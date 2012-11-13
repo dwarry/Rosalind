@@ -40,7 +40,6 @@
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.0\Framework\v4.0\Microsoft.FSharp.Targets" Condition=" Exists('$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.0\Framework\v4.0\Microsoft.FSharp.Targets')" />
   <ItemGroup>
-    <Compile Include="Rosalind.fs" />
     <None Include="App.config" />
     <None Include="rosalind_dna.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -49,6 +48,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <Compile Include="Permutations.fs" />
+    <Compile Include="AminoAcids.fs" />
+    <Compile Include="Dna.fs" />
+    <Compile Include="Rna.fs" />
+    <Compile Include="Rosalind.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />

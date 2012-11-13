@@ -1,11 +1,13 @@
 ﻿// http://rosalind.info/problems/prot
 open System.IO
-open Rosalind
+open Rna
+open AminoAcids
+
 
 [<EntryPoint>]
 let main argv = 
     use f = File.OpenText "rosalind_prot.txt"
-    let rna = f.ReadLine() |> Rosalind.rnaStringToRnaBaseSeq
+    let rna = f.ReadLine() |> rnaStringToRnaBaseSeq
     let protein = rnaBaseSeqToProteinSeq rna |> Seq.head |> proteinSeqToString
     use output = File.CreateText "result.txt"
     output.WriteLine(protein)
