@@ -3,6 +3,8 @@
 open Dna
 open AminoAcids
 
+type kvp<'t,'u> = System.Collections.Generic.KeyValuePair<'t,'u>
+
 type public RnaBase = |A|C|G|U
 
 type public Codon = (RnaBase * RnaBase * RnaBase)
@@ -118,8 +120,22 @@ let private initCodonTable =
 
 let private RnaCodonTable = initCodonTable 
 
+// Look-up from amino acids to the Codons that code for them.
+// The None key value indicates a stop codon 
+let private aminoAcidToCodonLookup = 
+    System.Linq.Enumerable.ToLookup(
+         RnaCodonTable :> seq<kvp<Codon, AminoAcid option>>,
+         (fun (x: kvp<Codon, AminoAcid option>) -> x.Value),
+         (fun (x: kvp<Codon, AminoAcid option>) -> x.Key))                               
+
 let public codonToAminoAcid (c: Codon) = RnaCodonTable.[c]
 
+let public aminoAcidToCodons (aa: AminoAcid option) = 
+    let result = aminoAcidToCodonLookup.[aa]
+    if Seq.length result > 0 then
+        result
+    else
+        failwith "0 codons"
 
 let public rnaBaseSeqToProteinSeq (rna: seq<RnaBase>) = 
     let rec translateUntilStopOrEmpty (acc: AminoAcid list) rna' = 
