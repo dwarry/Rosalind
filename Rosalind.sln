@@ -15,6 +15,13 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Lexf", "Lexf\Lexf.fsproj", 
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Prot", "Prot\Prot.fsproj", "{F6105A78-CC77-4803-B4CB-230825CE93AF}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{26A895A7-D974-44CC-92DC-3616EE16632D}"
+	ProjectSection(SolutionItems) = preProject
+		ReadMe.md = ReadMe.md
+	EndProjectSection
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Prtm", "Prtm\Prtm.fsproj", "{CBF064C7-AF0F-4286-8302-DCF359522C94}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +56,10 @@ Global
 		{F6105A78-CC77-4803-B4CB-230825CE93AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F6105A78-CC77-4803-B4CB-230825CE93AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F6105A78-CC77-4803-B4CB-230825CE93AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBF064C7-AF0F-4286-8302-DCF359522C94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBF064C7-AF0F-4286-8302-DCF359522C94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBF064C7-AF0F-4286-8302-DCF359522C94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBF064C7-AF0F-4286-8302-DCF359522C94}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
