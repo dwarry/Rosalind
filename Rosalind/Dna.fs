@@ -51,3 +51,16 @@ let reverseComplement (s: string) =
     let bases = dnaStringToDnaBaseSeq s |> Seq.map dnaComplement |> Array.ofSeq |> Array.rev
     dnaBaseSeqToString bases
 
+let public makeProfile (dnaBaseSeqs: seq<seq<DnaBase>>) = 
+    let mat = dnaBaseSeqs |> Matrix.Generic.ofSeq 
+    seq{
+        for i in seq { 0 .. (mat.NumCols - 1)} do
+            let col = mat.Column(i)
+            yield countBases col
+    }
+
+let public mostFrequent (bc: DnaBaseCount) =
+    if bc.A >= bc.C && bc.A >= bc.G && bc.A >= bc.T then DnaBase.A
+    else if bc.C >= bc.G && bc.C >= bc.T then DnaBase.C
+         else if bc.G >= bc.T then DnaBase.G
+              else DnaBase.T
