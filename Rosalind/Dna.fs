@@ -47,9 +47,9 @@ let public gcContent bases =
    100.0 * float(counts.C + counts.G) / float(counts.A + counts.C + counts.G + counts.T)
 
 // Problem 3
-let reverseComplement (s: string) = 
-    let bases = dnaStringToDnaBaseSeq s |> Seq.map dnaComplement |> Array.ofSeq |> Array.rev
-    dnaBaseSeqToString bases
+let reverseComplement (dna: seq<DnaBase>) = 
+    dna |> Seq.map dnaComplement |> Array.ofSeq |> Array.rev |> Array.toSeq
+    
 
 let public makeProfile (dnaBaseSeqs: seq<seq<DnaBase>>) = 
     let mat = dnaBaseSeqs |> Matrix.Generic.ofSeq 

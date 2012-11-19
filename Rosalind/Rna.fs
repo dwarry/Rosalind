@@ -120,6 +120,10 @@ let private initCodonTable =
 
 let private RnaCodonTable = initCodonTable 
 
+let private StartCodon = (RnaBase.A, RnaBase.U, RnaBase.G)
+
+let private isStopCodon c = Option.isNone RnaCodonTable.[c]
+
 // Look-up from amino acids to the Codons that code for them.
 // The None key value indicates a stop codon 
 let private aminoAcidToCodonLookup = 
@@ -151,3 +155,69 @@ let public rnaBaseSeqToProteinSeq (rna: seq<RnaBase>) =
         | (proteinString, []) -> List.rev (proteinString :: acc)
         | (proteinString, tl) -> translate (proteinString ::acc) tl
     translate [] (List.ofSeq rna)
+
+let public splitIntoCodons (rna: seq<RnaBase>) = 
+    seq {
+        let bases = new System.Collections.Generic.List<RnaBase>()
+        for b in rna do
+            bases.Add(b)
+            if bases.Count = 3 then 
+                let codon = (bases.[0], bases.[1], bases.[2])
+                bases.Clear() |> ignore
+                yield codon
+    }
+
+let rec public findOpenReadingFrames (codons: seq<Codon>) = 
+    // State is a 5-tuple:
+    // *  the list of protein strings found so far
+    // *  the list of amino acids in the current protein string (LIFO)
+    // *  whether or not the current reading frame is open
+    // *  list of indices into an open reading frame where there is a 
+    //    new start codon (and so a sub-string should also be included in the
+    //    results)
+    // *  the present index in the current protein string (should always be = Item2.length)
+    let orf = Seq.fold 
+                (fun st c -> 
+                    let (results, current, isOpen, startIndices, currentIndex) = st
+                    match RnaCodonTable.[c] with
+                    | None when isOpen ->
+                        let newProteinString = List.rev current
+                        if List.isEmpty startIndices then
+                            (newProteinString :: results, [], false, [], 0) 
+                        else
+                            let arr = Array.ofList newProteinString
+                            let allSubstrings = 
+                                newProteinString ::
+                                           (List.map (fun x -> arr.[x..] |> Array.toList) startIndices)
+                            (List.append allSubstrings results, [], false, [], 0)
+                        
+                    | Some aa when c = StartCodon ->
+                        if isOpen then
+                            (results, aa :: current, true, currentIndex :: startIndices, currentIndex + 1)
+                        else
+                            (results, [aa], true, startIndices, currentIndex + 1)
+                    
+                    | Some aa when isOpen ->
+                        (results, aa :: current, true, startIndices, currentIndex + 1)
+                    | _ -> st
+                        
+                )
+                ([], [], false,[], 0) 
+                codons
+
+    match orf with (results, _, _, _, _) -> List.rev results
+    
+
+let public findAllPossibleProteins (dna: seq<DnaBase>) = 
+    seq {
+        let splitAndFindOpenReadingFrames = 
+            LazyList.toSeq >> splitIntoCodons >> findOpenReadingFrames
+
+        let rna = Seq.map dnaToRna dna |> LazyList.ofSeq
+        
+        yield! splitAndFindOpenReadingFrames rna
+
+        yield! splitAndFindOpenReadingFrames (LazyList.skip 1 rna)
+        
+        yield! splitAndFindOpenReadingFrames (LazyList.skip 2 rna)
+    }
