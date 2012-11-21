@@ -34,6 +34,8 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Orf", "Orf\Orf.fsproj", "{E
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Revp", "Revp\Revp.fsproj", "{EC5129CB-ABAE-41F4-B8A4-6BB275B72373}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Kmp", "Kmp\Kmp.fsproj", "{50B7C4FB-53C1-4557-8D08-6C9208203541}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -96,6 +98,10 @@ Global
 		{EC5129CB-ABAE-41F4-B8A4-6BB275B72373}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC5129CB-ABAE-41F4-B8A4-6BB275B72373}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EC5129CB-ABAE-41F4-B8A4-6BB275B72373}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50B7C4FB-53C1-4557-8D08-6C9208203541}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50B7C4FB-53C1-4557-8D08-6C9208203541}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50B7C4FB-53C1-4557-8D08-6C9208203541}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50B7C4FB-53C1-4557-8D08-6C9208203541}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
