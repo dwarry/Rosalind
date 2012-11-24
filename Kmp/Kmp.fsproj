@@ -8,7 +8,7 @@
     <ProjectGuid>{50b7c4fb-53c1-4557-8d08-6c9208203541}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>Prot</RootNamespace>
-    <AssemblyName>Prot</AssemblyName>
+    <AssemblyName>Kmp</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <Name>Prot</Name>
   </PropertyGroup>

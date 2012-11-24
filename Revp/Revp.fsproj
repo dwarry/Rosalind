@@ -8,7 +8,7 @@
     <ProjectGuid>{ec5129cb-abae-41f4-b8a4-6bb275b72373}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>Prot</RootNamespace>
-    <AssemblyName>Prot</AssemblyName>
+    <AssemblyName>Revp</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <Name>Prot</Name>
   </PropertyGroup>

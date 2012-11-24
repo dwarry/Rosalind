@@ -8,7 +8,7 @@
     <ProjectGuid>{38cd4125-6221-43d7-a4ed-064a2805a6b5}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>Prot</RootNamespace>
-    <AssemblyName>Prot</AssemblyName>
+    <AssemblyName>Subs</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <Name>Prot</Name>
   </PropertyGroup>
